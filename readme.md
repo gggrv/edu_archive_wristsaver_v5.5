@@ -2,30 +2,30 @@
 
 *Note: This project is archived and no longer maintained. No additional documentation or installation support will be provided.*
 
-*User font creation process, demonstrated in this readme file, is an extremely unpractical and tedious task*.
+*User font creation is a complex and time-consuming process, mainly for demonstration purposes.*
 
 *This readme document was optimised with AI*.
 
-<p style="text-align:right;"><a href="https://gggrv.github.io/something/2022/05/17/devinfo-wristsaver/">Homepage </a></p>
+<p style="text-align:right;"><a href="https://gggrv.github.io/something/2022/05/17/devinfo-wristsaver/">Homepage</a></p>
 
-## What is This
+## Overview
 
 | Item | Description |
 | --- | --- |
-| What is this? | A project, saved into `git` repository, hosted at `GitHub` website. |
-| What does it contain? | <ul><li>Several `python` tools for printing handwritten documents.</li><li>Minimal demo pseudofont, purely for demonstration purposes, not suitable for actual document printing.</li></ul> |
-| Whom are they for? | For beginner `python` developers. |
-| What is the current project status? | <ul><li>✔️ Functional and archived</li><li>😴 No longer maintained.</li></ul> |
-| Why is it obsolete? | <ul><li>The code is unnecessarily obscure and rigid — introducing any meaningful changes would require complete project restructuring.</li><li>User font creation is complex and, taking into account the possibilities of modern machine learning tools, requires a prohibitive amount of manual labor.</li></ul> |
-| What is the purpose of this repository? | Host an educational archive with working code. |
-| Why is it named like that? | Because at one point in time it allowed to save several human wrists from unnecessary injuries. |
+| What is this? | A project saved in a `git` repository, hosted on GitHub. |
+| What does it contain? | <ul><li>Python tools for printing handwritten documents.</li><li>Demo pseudofont for demonstration only.</li></ul> |
+| Who is it for? | Beginner Python developers. |
+| Project status | <ul><li>✔️ Functional and archived</li><li>😴 Not maintained</li></ul> |
+| Why is it obsolete? | <ul><li>Code is obscure and rigid; meaningful changes require a full rewrite.</li><li>Font creation is manual and labor-intensive, not practical with modern ML tools.</li></ul> |
+| Purpose | Educational archive with working code. |
+| Name origin | It once helped save human wrists from repetitive strain. |
 
 ## Installation
 
 This project is best used with [Visual Studio Code](https://code.visualstudio.com) (VS Code).
 
-1. Clone this repository
-2. Open the folder in VS Code
+1. Clone this repository.
+2. Open the folder in VS Code.
 3. Set up Python environment:
    - Create virtual environment: `python -m venv .virtual_env`
    - Select the interpreter: VS Code Command Palette → "Python: Select Interpreter" → Enter path
@@ -35,24 +35,24 @@ This project is best used with [Visual Studio Code](https://code.visualstudio.co
    pip install -r requirements.txt
    ```
 
-## How to print a handwritten document
+## Printing a Handwritten Document
 
-1. Open the `step5_Printer.py` file with `Spyder`.
+1. Open `step5_Printer.py`.
 2. Scroll to the bottom.
-3. Adjust the `my_font_folder` variable.
-3. Choose the menu option "Run"->"Run".
+3. Set the `my_font_folder` variable.
+4. Run the script.
 
-The `.png` images, named consequtively `1.png`, `2.png`, `3.png`... (their number depends on the amount of text being printed and user font size) will start appearing in the cloned repository folder. The user may want to manually post-process them via any available image editor.
+Output `.png` images (`1.png`, `2.png`, ...) will appear in the repository folder. You may post-process them with any image editor.
 
 The example output with a fine-tuned font could be as follows (*please note that for privacy reasons the original output image, which was 2480x3500px and 300 dpi resolution, had to be cropped and severely scaled down*):
 
 ![Image with example output with fine-tuned font, severely scaled down for privacy reasons](./docs/severely_scaled_down_output_demo.png)
 
-### Customize the text that will be printed
+### Customizing Printed Text
 
-1. Open the `giant_lecture.html` file.
-2. Carefully edit its contents (make sure all tags are closed, etc).
-3. Keep the tag structure as simple as possible — only headers, paragraphs and new lines are recognized. <sub>Probably. I don't remember.</sub>
+1. Open `giant_lecture.html`.
+2. Edit its contents (ensure tags are closed).
+3. Use simple tag structure: headers, paragraphs, new lines only.
 
 *Please note, that theoretically `wristsaver` can print in any language — any letter, number, text symbol, emoji, pictogram, word, phrase, anything. In order to achieve this in practice, the user needs to manually add each desired custom item into his font and provide appropriate metadata. The process will be described in further sections.*
 
@@ -62,9 +62,9 @@ The example output with a fine-tuned font could be as follows (*please note that
 2. Carefully edit its contents (make sure all tags are closed, etc).
 3. Keep the values as simple as possible.
 
-## How to create a user font
+## Creating a User Font
 
-For demonstration purposes, a minimal demo font is included at all development stages — from `raw` to `printable`. The contents of this font are sampled from the freely available Kaggle handwriting dataset, available at the [official website](https://www.kaggle.com/datasets/landlord/handwriting-recognition?resource=download).
+A minimal demo font is included, sampled from the [Kaggle handwriting dataset](https://www.kaggle.com/datasets/landlord/handwriting-recognition?resource=download).
 
 Please see the expected folder structure (some files are omitted):
 
@@ -83,55 +83,34 @@ Please see the expected folder structure (some files are omitted):
 └─■ step10_Marker.py
 ```
 
-### Step 0 — Obtain raw image with handwriting
+### Step 0 — Obtain Raw Image With Handwriting
 
-1. Scan a page with some handwritten text on it.
-2. Create a folder `fonts/my_font_0raw`.
-3. Put *a disposable copy* of the scanned image into the folder.
+1. Scan a handwritten page.
+2. Create `fonts/my_font_0raw`.
+3. Put a copy of the scanned image there.
 
-### Step 1 — Split this image into desired fragments
+### Step 1 — Split Image into Fragments
 
-*Please note, that the desired fragments can have any shape or size — no restriction. Any differences will be mitigated via metadata editing tool in Step 4.*
+Fragments can be any shape or size. You can use any image editor to select and save regions.
 
-Let's say that during `Step 0` the user has obtained `raw.png` image. Let's assume that this `raw.png` contains the following handwritten text: `The weather is good 100% :D`. Let's assume that the user wants to extract the following sub-images from this big `raw.png`:
-- The image, containing word `The`
-- The images for each individual letter (`T`,`h`,`e`,` `,`w`,`e`,`a`,`t`,`h`,`e`,`r`,` `,`i`,`s`,` `,`g`,`o`,`o`,`d`,` `,`1`,`0`,`0`,`%`,` `,`:`,`D`)
-- The image, containing the frequenty-used number `100`
-- The image, containing the smile `:D`.
-
-The means to achieve this are entirely up to the user. Worst-case scenario is manual image editing: select desired region, save it to disk.
-
-Let's assume that at this moment the user has a lot of small images that contain the desired extracts from the big `raw.png`.
-
-1. Create a folder `fonts/my_font_1split`.
-2. Create a folder `fonts/my_font_1split/letters_lowercase`.
-2. Create a folder `fonts/my_font_1split/letters_uppercase`.
-2. Create a folder `fonts/my_font_1split/numbers`.
-2. Create a folder `fonts/my_font_1split/my_custom_category`.
-2. Create a folder `fonts/my_font_1split/it_can_be_named_anything`.
-2. Put *disposable copies* of some of the small images into the appropriate subfolders.
-
-*Please note, that the small images can be placed anywhere — in root `fonts/my_font_1split`, in some user-defined subfolder. The target image location is entirely up to the user.*
+1. Create `fonts/my_font_1split` and subfolders (e.g., `letters_lowercase`, `letters_uppercase`, `numbers`, etc.).
+2. Place copies of the fragments in appropriate subfolders.
 
 ### Step 2 — Remove Backgrounds and Create Metadata
 
-1. Duplicate the folder `fonts/my_font_1split`.
-1. Rename it to be `fonts/my_font_2metadata`.
-1. Open the `step2_rem_bg_create_df.py` file with `Spyder`.
-2. Scroll to the bottom.
-3. Adjust the `folder_with_letter_images` variable to the `fonts/my_font_2metadata`.
-4. Choose the menu option "Run"->"Run".
+1. Duplicate `fonts/my_font_1split` as `fonts/my_font_2metadata`.
+2. Open `step2_rem_bg_create_df.py` in Spyder.
+3. Set `folder_with_letter_images` to `fonts/my_font_2metadata`.
+4. Run the script.
 
-The images in the `fonts/my_font_2metadata` folder will be edited inplace — their background will become transparent. Additionally, `df.xls` files will be created.
+Images will be updated with transparent backgrounds and `df.xls` metadata files will be created.
 
-### Step 3 — Automatically Get Some Metadata
+### Step 3 — Add Image Size Metadata
 
-1. Duplicate the folder `fonts/my_font_2metadata`.
-1. Rename it to be `fonts/my_font_3metadata`.
-1. Open the `step3_write_image_width_and_height_to_df.py` file with `Spyder`.
-2. Scroll to the bottom.
-3. Adjust the `folder_with_letter_images` variable to the `fonts/my_font_3metadata`.
-4. Choose the menu option "Run"->"Run".
+1. Duplicate `fonts/my_font_2metadata` as `fonts/my_font_3metadata`.
+2. Open `step3_write_image_width_and_height_to_df.py` in Spyder.
+3. Set `folder_with_letter_images` to `fonts/my_font_3metadata`.
+4. Run the script.
 
 The `df.xls` files will be edited inplace.
 
@@ -143,19 +122,18 @@ The `df.xls` files will be edited inplace.
 2. Add new column named `text`.
 3. Input the desired text (example: `t_uppercase.png` has text `T`, `a_version_slanted.png` has text `a`, `1.png` has text `1`, `smiley_face.png` has text `😊`, `word_the.png` has text `^`).
 
-*Please note that only one-character symbols are supported. <sub>Probably. I don't remember.</sub>*
+*Please note that only single-character symbols are supported. <sub>Probably. I don't remember.</sub>*
 
-At this moment in time the font is officially usable: it has enouh metadata. The printed results will most likely be odd — letter spacing is incorrect, tall images are placed wrong, etc.
+At this point, the font is usable, but results may need improvement.
 
 ### Step 4 — Adjust Metadata via GUI Editor
 
-1. Open the `step4_Editor.py` file with `Spyder`.
-2. Scroll to the bottom.
-3. Adjust the `my_font_folder` variable.
-4. Choose the menu option "Run"->"Run".
-5. Two `GUI windows` will show up:
+1. Open `step4_Editor.py` in Spyder.
+2. Set `my_font_folder`.
+3. Run the script.
+4. Two GUI windows will appear:
 
-![Screenshot of the two windows](./docs/stage4_1_window.jpg)
+![Two windows](./docs/stage4_1_window.jpg)
 
 6. Click on any letter in the `GUI window with letters`.
 7. The letter will become highlighted by red border, and the lines will appear:
