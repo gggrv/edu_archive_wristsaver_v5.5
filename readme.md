@@ -1,9 +1,12 @@
-# Educational Archive for "wristsaver v5.5"
+# Educational Archive for "Wristsaver v5.5"
 
-*Please note, that this project is obsolete, and is no longer maintained. No additional documentation will be released. No additional installation support will be provided*.
+*Note: This project is archived and no longer maintained. No additional documentation or installation support will be provided.*
 
-*Please note, that user font creation process, demonstrated in this readme file, is an extremely unpractical and tedious endeavor. More information regarding this project is available at the following address: [GitHub pages](https://gggrv.github.io/something/2022/05/17/devinfo-wristsaver/)*.
+*User font creation process, demonstrated in this readme file, is an extremely unpractical and tedious task*.
 
+*This readme document was optimised with AI*.
+
+<p style="text-align:right;"><a href="https://gggrv.github.io/something/2022/05/17/devinfo-wristsaver/">Homepage </a></p>
 
 ## What is This
 
@@ -12,24 +15,25 @@
 | What is this? | A project, saved into `git` repository, hosted at `GitHub` website. |
 | What does it contain? | <ul><li>Several `python` tools for printing handwritten documents.</li><li>Minimal demo pseudofont, purely for demonstration purposes, not suitable for actual document printing.</li></ul> |
 | Whom are they for? | For beginner `python` developers. |
-| What is the current project status? | <ul><li>✔️Functional.</li><li>😴Archived, outdated, no longer maintained.</li></ul> |
+| What is the current project status? | <ul><li>✔️ Functional and archived</li><li>😴 No longer maintained.</li></ul> |
 | Why is it obsolete? | <ul><li>The code is unnecessarily obscure and rigid — introducing any meaningful changes would require complete project restructuring.</li><li>User font creation is complex and, taking into account the possibilities of modern machine learning tools, requires a prohibitive amount of manual labor.</li></ul> |
 | What is the purpose of this repository? | Host an educational archive with working code. |
 | Why is it named like that? | Because at one point in time it allowed to save several human wrists from unnecessary injuries. |
 
 ## Installation
 
-For the best experience, please use the specific version of the `Spyder` python IDE. It can be installed via `pip install spyder==5.5.6` command.
+This project is best used with [Visual Studio Code](https://code.visualstudio.com) (VS Code).
 
-<ol>
-<li>Clone this repository in a directory of choice.</li>
-<li>Navigate to this directory.</li>
-<li>Follow <a href="https://medium.com/analytics-vidhya/5-steps-setup-python-virtual-environment-in-spyder-ide-da151bafa337">this manual</a> in order to:<ol><li>Create the virtual environment</li><li>Activate this virtual environment</li><li>Make the <code>Spyder</code> work in this virtual environment.</li></ol></li>
-<li>Install the dependencies, listed in the <code>requirements.txt</code>, into this virtual environment.</li>
-<li>In <code>Spyder</code>, open the menu option "Projects"->"New Project...", select "Existing directory", set "Location" to the dir of the cloned repository and click "Create".</li>
-<li>Open the menu option "Tools"->"Preferences", select "Run", set "Working directory settings" to "The current working directory" option.</li>
-<li>Make sure that current working dir is the cloned repository dir.</li>
-</ol>
+1. Clone this repository
+2. Open the folder in VS Code
+3. Set up Python environment:
+   - Create virtual environment: `python -m venv .virtual_env`
+   - Select the interpreter: VS Code Command Palette → "Python: Select Interpreter" → Enter path
+4. Install dependencies:
+   ```
+   pip install setuptools
+   pip install -r requirements.txt
+   ```
 
 ## How to print a handwritten document
 
@@ -79,13 +83,13 @@ Please see the expected folder structure (some files are omitted):
 └─■ step10_Marker.py
 ```
 
-### [Step 0] Obtain raw image with handwriting
+### Step 0 — Obtain raw image with handwriting
 
 1. Scan a page with some handwritten text on it.
 2. Create a folder `fonts/my_font_0raw`.
 3. Put *a disposable copy* of the scanned image into the folder.
 
-### [Step 1] Split this image into desired fragments
+### Step 1 — Split this image into desired fragments
 
 *Please note, that the desired fragments can have any shape or size — no restriction. Any differences will be mitigated via metadata editing tool in Step 4.*
 
