@@ -42,7 +42,7 @@ This project is best used with [Visual Studio Code](https://code.visualstudio.co
 3. Set the `my_font_folder` variable.
 4. Run the script.
 
-Output `.png` images (`1.png`, `2.png`, ...) will appear in the repository folder. You may post-process them with any image editor.
+Output `.png` images (`1.png`, `2.png`, ...) will appear in the repository folder. The user may want to post-process them with any image editor.
 
 The example output with a fine-tuned font could be as follows (*please note that for privacy reasons the original output image, which was 2480x3500px and 300 dpi resolution, had to be cropped and severely scaled down*):
 
@@ -51,8 +51,8 @@ The example output with a fine-tuned font could be as follows (*please note that
 ### Customizing Printed Text
 
 1. Open `giant_lecture.html`.
-2. Edit its contents (ensure tags are closed).
-3. Use simple tag structure: headers, paragraphs, new lines only.
+2. Carefully edit its contents (make sure all tags are closed, etc).
+3. Keep the structure as simple as possible.
 
 *Please note, that theoretically `wristsaver` can print in any language — any letter, number, text symbol, emoji, pictogram, word, phrase, anything. In order to achieve this in practice, the user needs to manually add each desired custom item into his font and provide appropriate metadata. The process will be described in further sections.*
 
@@ -91,15 +91,32 @@ Please see the expected folder structure (some files are omitted):
 
 ### Step 1 — Split Image into Fragments
 
-Fragments can be any shape or size. You can use any image editor to select and save regions.
+*Please note, that the desired fragments can have any shape or size — no restriction. Any differences will be mitigated via metadata editing tool in Step 4.*
 
-1. Create `fonts/my_font_1split` and subfolders (e.g., `letters_lowercase`, `letters_uppercase`, `numbers`, etc.).
-2. Place copies of the fragments in appropriate subfolders.
+Let's say that during `Step 0` the user has obtained `raw.png` image. Let's assume that this `raw.png` contains the following handwritten text: `The weather is good 100% :D`. Let's assume that the user wants to extract the following sub-images from this big `raw.png`:
+- The image, containing word `The`
+- The images for each individual letter (`T`,`h`,`e`,` `,`w`,`e`,`a`,`t`,`h`,`e`,`r`,` `,`i`,`s`,` `,`g`,`o`,`o`,`d`,` `,`1`,`0`,`0`,`%`,` `,`:`,`D`)
+- The image, containing the frequenty-used number `100`
+- The image, containing the smile `:D`.
+
+The means to achieve this are entirely up to the user. Worst-case scenario is manual image editing: select desired region, save it to disk.
+
+Let's assume that at this moment the user has a lot of small images that contain the desired extracts from the big `raw.png`.
+
+1. Create a folder `fonts/my_font_1split`.
+2. Create a folder `fonts/my_font_1split/letters_lowercase`.
+2. Create a folder `fonts/my_font_1split/letters_uppercase`.
+2. Create a folder `fonts/my_font_1split/numbers`.
+2. Create a folder `fonts/my_font_1split/my_custom_category`.
+2. Create a folder `fonts/my_font_1split/it_can_be_named_anything`.
+2. Put *disposable copies* of some of the small images into the appropriate subfolders.
+
+*Please note, that the small images can be placed anywhere — in root `fonts/my_font_1split`, in some user-defined subfolder. The target image location is entirely up to the user.*
 
 ### Step 2 — Remove Backgrounds and Create Metadata
 
 1. Duplicate `fonts/my_font_1split` as `fonts/my_font_2metadata`.
-2. Open `step2_rem_bg_create_df.py` in Spyder.
+2. Open `step2_rem_bg_create_df.py`.
 3. Set `folder_with_letter_images` to `fonts/my_font_2metadata`.
 4. Run the script.
 
@@ -108,7 +125,7 @@ Images will be updated with transparent backgrounds and `df.xls` metadata files 
 ### Step 3 — Add Image Size Metadata
 
 1. Duplicate `fonts/my_font_2metadata` as `fonts/my_font_3metadata`.
-2. Open `step3_write_image_width_and_height_to_df.py` in Spyder.
+2. Open `step3_write_image_width_and_height_to_df.py`.
 3. Set `folder_with_letter_images` to `fonts/my_font_3metadata`.
 4. Run the script.
 
@@ -128,7 +145,7 @@ At this point, the font is usable, but results may need improvement.
 
 ### Step 4 — Adjust Metadata via GUI Editor
 
-1. Open `step4_Editor.py` in Spyder.
+1. Open `step4_Editor.py`.
 2. Set `my_font_folder`.
 3. Run the script.
 4. Two GUI windows will appear:
@@ -155,9 +172,9 @@ After this, attempt to print the document via `step5_Printer.py` again, and see 
 *The user may further enhance the font by using the `step10_Marker.py` editor.*  
 *The user may further enhance the font by manually adding the `previous letter` values into the `df.xls` files.*  
 
-## License
+## Licenses
 
-The actual licenses are available at the beginning of each source code file; superficial overview:
+License details are provided in each source file. Overview:
 - The `GUI` elements that rely on the `PyQt5` library are generally subject to GPL v3.
 - Modules that don't rely on the `PyQt5` library are generally subject to Apache 2.0.
 
